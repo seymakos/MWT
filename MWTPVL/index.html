@@ -1,0 +1,30 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+</head>
+<body>
+
+<h2>Task List</h2>
+
+<?php
+
+$backendUrl = 'http://localhost:8080/todos';
+
+
+$response = file_get_contents($backendUrl);
+$tasks = json_decode($response, true);
+
+
+echo '<ul>';
+foreach ($tasks as $task) {
+    echo '<li>' . $task['name'] . ' - Priority: ' . $task['priority'] . '</li>';
+}
+echo '</ul>';
+?>
+
+</body>
+</html>
